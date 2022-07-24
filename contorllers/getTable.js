@@ -1,4 +1,3 @@
-require("dotenv").config()
 const { Client } = require("pg");
 console.log(process.env.DATABASE_URL)
 const client = new Client({
@@ -9,10 +8,9 @@ const client = new Client({
       })
 
 client.connect();
-
 function getTable(req, res) {
     client.query(
-        `SELECT date,name,amount,distance FROM table_with_data`,
+        `SELECT date,name,amount,distance FROM ${process.env.TABLE_NAME || "table_with_data"}`,
         (err, data) => {
             if (err) {
                 console.log(err);
