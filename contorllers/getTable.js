@@ -2,7 +2,10 @@ require("dotenv").config()
 const { Client } = require("pg");
 console.log(process.env.DATABASE_URL)
 const client = new Client({
-        connectionString: process.env.DATABASE_URL,
+        connectionString: process.env.DATABASE_URL || "postgres://izvfesfr:gkrKGIO0gzYcHmNWlor8yZNRlL3XCqnG@abul.db.elephantsql.com/izvfesfr",
+        ssl: {
+            rejectUnauthorized: false,
+        }
       })
 
 client.connect();
